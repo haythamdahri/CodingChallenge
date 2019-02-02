@@ -1,0 +1,25 @@
+{% load staticfiles %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'challenge/css/bootstrap.min.css' %}" />
+
+    <title>{% block title %}SHOP:{% endblock %}</title>
+  </head>
+  <body>
+    {% block content %}{% endblock %}
+
+    {% block js %}
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="{% static 'challenge/js/jquery-3.3.1.min.js' %}" ></script>
+        <script src="{% static 'challenge/js/popper.min.js' %}" ></script>
+        <script src="{% static 'challenge/js/bootstrap.min.js' %}" ></script>
+    {% endblock %}
+  </body>
+</html>
