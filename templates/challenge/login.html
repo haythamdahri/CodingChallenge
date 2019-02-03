@@ -1,0 +1,46 @@
+{% extends 'challenge/base.html' %}
+{% load widget_tweaks %}
+{% block title %}{{ block.super }}LOGIN{% endblock %}
+{% block content %}
+    {{ block.super }}
+
+    <div class="container mb-3">
+        <h3 class="text-center mt-3">LOGIN</h3>
+
+        {% include 'challenge/messages.html' %}
+
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                {% if login_form.email.errors %}
+                    {% render_field login_form.email class='is-invalid form-control' %}
+                {% else %}
+                    {% render_field login_form.email %}
+                {% endif %}
+                {% for error in login_form.email.errors %}
+                    <div class="invalid-feedback">
+                        <i class="fas fa-exclamation-triangle"></i> {{ error }}
+                    </div>
+                {% endfor %}
+
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                {% if login_form.password.errors %}
+                    {% render_field login_form.password class='is-invalid form-control' %}
+                {% else %}
+                    {% render_field login_form.password %}
+                {% endif %}
+                {% for error in login_form.password.errors %}
+                    <div class="invalid-feedback">
+                        <i class="fas fa-exclamation-triangle"></i> {{ error }}
+                    </div>
+                {% endfor %}
+            </div>
+
+            <button type="submit" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i> Login</button>
+        </form>
+    </div>
+
+{% endblock %}

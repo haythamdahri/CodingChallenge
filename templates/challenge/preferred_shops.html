@@ -3,9 +3,9 @@
 {% block content %}
     {{ block.super }}
 
-    {% if shops.paginator.count > 0 %}
+    {% if preferred_shops.paginator.count > 0 %}
         <div class="card-deck mt-3">
-            {% for shop in shops %}
+            {% for shop in preferred_shops %}
                 <div class="card p-3" id="shop{{ shop.pk }}">
                     <h6 class="card-title float-left">{{ shop.name }}</h6>
                     <a href="{{ shop.cover.url }}" data-fancybox data-caption="{{ shop.name }}">
@@ -13,10 +13,7 @@
                     </a>
                     <div class="card-body text-center">
                         <a class="card-link">
-                            <button type="button" class="btn btn-danger dislike_shop" url="{% url 'challenge:dislike_shop' %}" csrf_token="{{ csrf_token }}" shop="{{ shop.pk }}">Dislike</button>
-                        </a>
-                        <a class="card-link">
-                            <button type="button" class="btn btn-success like_shop" url="{% url 'challenge:like_shop' %}" csrf_token="{{ csrf_token }}" shop="{{ shop.pk }}">Like</button>
+                            <button type="button" class="btn btn-danger remove_shop" url="{% url 'challenge:remove_shop' %}" csrf_token="{{ csrf_token }}" shop="{{ shop.pk }}">Remove</button>
                         </a>
                     </div>
                 </div>
@@ -28,12 +25,12 @@
             </div>
 
         <div id="paginator" class="row justify-content-center pb-5 pt-5 mb-5">
-            {% if shops.has_other_pages %}
+            {% if preferred_shops.has_other_pages %}
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">
-                        {% if shops.has_previous %}
+                        {% if preferred_shops.has_previous %}
                             <li class="page-item">
-                                <a class="page-link" href="{% url 'challenge:home' %}?page=1" aria-label="Previous">
+                                <a class="page-link" href="{% url 'challenge:preferred_shops' %}?page=1" aria-label="Previous">
                                     <span aria-hidden="true">&laquo;</span>
                                 </a>
                             </li>
@@ -45,14 +42,14 @@
                             </li>
                         {% endif %}
 
-                        {% for i in shops.paginator.page_range %}
-                            <li class="page-item {% if shops.number == i %}active{% endif %}"><a class="page-link"
-                                                                                                 href="{% url 'challenge:home' %}?page={{ i }}">{{ i }}</a>
+                        {% for i in preferred_shops.paginator.page_range %}
+                            <li class="page-item {% if preferred_shops.number == i %}active{% endif %}"><a class="page-link"
+                                                                                                 href="{% url 'challenge:preferred_shops' %}?page={{ i }}">{{ i }}</a>
                             </li>
                         {% endfor %}
                         {% if shops.has_next %}
                             <li class="page-item">
-                                <a class="page-link" href="{% url 'challenge:home' %}?page={{ shops.next_page_number }}"
+                                <a class="page-link" href="{% url 'challenge:preferred_shops' %}?page={{ preferred_shops.next_page_number }}"
                                    aria-label="Next">
                                     <span aria-hidden="true">&raquo;</span>
                                 </a>
@@ -71,7 +68,7 @@
 
     {% else %}
         <div class="alert alert-info  mt-3" style="padding: 10px;font-size:12px;font-weight:bold;width: 100%;">
-            <i class="fa fa-exclamation-triangle"></i> No shop found!
+            <i class="fa fa-exclamation-triangle"></i>&nbsp;No shop found in your list!
         </div>
     {% endif %}
 
@@ -82,5 +79,7 @@
     <script type="text/javascript">
         $(".card-img-top").css({'width': '10rem', 'height': '10rem'});
         $(".card-img-top").parent().css({'margin-left': 'auto', 'margin-right': 'auto'});
+        $(".navbar-nav").find('li:first').removeClass('active');
+        $(".preferred_shops_link").addClass('active');
     </script>
 {% endblock %}

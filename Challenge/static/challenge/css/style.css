@@ -1,0 +1,25 @@
+@font-face{
+    src: url('../webfonts/Helvetica-Bold.ttf') format('truetype');
+    font-family: 'HelveticaBold';
+}
+@font-face{
+    src: url('../webfonts/Helvetica-Oblique.ttf') format('truetype');
+    font-family: 'HelveticaOblique';
+}
+@font-face{
+    src: url('../webfonts/Helvetica-BoldOblique.ttf') format('truetype');
+    font-family: 'HelveticaBoldOblique';
+}
+@font-face{
+    src: url('../webfonts/Helvetica.ttf') format('truetype');
+    font-family: 'Helvetica';
+}
+body{
+    font-family: 'Helvetica';
+}
+.btn{
+	box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+	text-transform: capitalize;
+    font-family: 'HelveticaBold'
+}
+
